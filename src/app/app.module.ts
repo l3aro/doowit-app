@@ -1,3 +1,4 @@
+import { RegisterPageModule } from './../pages/register/register.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -18,8 +19,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    LoginPageModule
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false,
+      backButtonText: '',
+      iconMode: 'ios',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out',
+      tabsPlacement: 'bottom',
+      pageTransition: 'ios-transition'
+    }),
+    LoginPageModule,
+    RegisterPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

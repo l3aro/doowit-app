@@ -1,9 +1,9 @@
 <!-- -->
-<ion-content padding class="animated fadeIn login auth-page">
+<ion-content class="auth-page">
   <div class="login-content">
 
     <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">
+    <div padding-horizontal text-center class="animated fadeIn">
       <div class="logo"></div>
       <h2 ion-text class="text-primary">
         <strong>Doowit</strong>
@@ -12,6 +12,14 @@
 
     <!-- Login form -->
     <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Tên hiển thị
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
       <ion-item>
         <ion-label floating>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
@@ -29,12 +37,9 @@
       </ion-item>
     </form>
 
-    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Quên mật khẩu?</strong></p>
-
-    <div>
-      <button ion-button icon-start block color="dark" tappable (click)="login()">
-        <ion-icon name="log-in"></ion-icon>
-        Đăng nhập
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()">
+        Đăng ký
       </button>
 
       <p text-center ion-text color="secondary">Hoặc đăng nhập với:</p>
@@ -58,13 +63,11 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </div>
-
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="secondary" tappable (click)="register()">Chưa có tài khoản? <strong>Đăng ký ngay</strong></span>
+      <span ion-text color="primary" tappable (click)="login()">Đã có tài khoản</span>
     </div>
 
   </div>
