@@ -1,3 +1,4 @@
+import { FormBuilder } from '@angular/forms';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
@@ -17,8 +18,16 @@ import { LoginPage } from '../login/login';
 })
 export class RegisterPage {
 
-  constructor(public nav: NavController) {
+  credentialsForm: any;
+
+  constructor(public nav: NavController, public formBuilder: FormBuilder) {
+    this.credentialsForm = this.formBuilder.group({
+      name: [''],
+      email: [''],
+      password: ['']
+    });
   }
+
 
   // register and go to home page
   register() {

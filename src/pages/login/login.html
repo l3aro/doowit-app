@@ -11,13 +11,13 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" [formGroup]="credentialsForm">
       <ion-item>
         <ion-label floating>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" [formControl]="credentialsForm.controls['email']" required pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,47 +25,51 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Mật khẩu
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [formControl]="credentialsForm.controls['password']" required pattern=".{6,}"></ion-input>
       </ion-item>
+    
+
+      <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Quên mật khẩu?</strong></p>
+
+      <div>
+        <button ion-button icon-start block color="dark" tappable (click)="login()" [disabled]="!credentialsForm.valid">
+          <ion-icon name="log-in"></ion-icon>
+          Đăng nhập
+        </button>
+
+        <p text-center ion-text color="secondary">Hoặc đăng nhập với:</p>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <button ion-button icon-only block class="btn-facebook">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button icon-only block class="btn-twitter">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button icon-only block class="btn-gplus">
+                <ion-icon name="logo-googleplus"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </div>
+      
     </form>
-
-    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Quên mật khẩu?</strong></p>
-
-    <div>
-      <button ion-button icon-start block color="dark" tappable (click)="login()">
-        <ion-icon name="log-in"></ion-icon>
-        Đăng nhập
-      </button>
-
-      <p text-center ion-text color="secondary">Hoặc đăng nhập với:</p>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-facebook">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-twitter">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-gplus">
-              <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
 
 
     <!-- Other links -->
     <div text-center margin-top>
       <span ion-text color="secondary" tappable (click)="register()">Chưa có tài khoản? <strong>Đăng ký ngay</strong></span>
     </div>
+
+    
 
   </div>
 </ion-content>

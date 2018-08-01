@@ -2,6 +2,7 @@ import { HomePage } from './../home/home';
 import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, MenuController, ToastController, AlertController } from 'ionic-angular';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,8 +18,21 @@ import { IonicPage, NavController, MenuController, ToastController, AlertControl
 })
 export class LoginPage {
 
-  constructor(public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
-    this.menu.swipeEnable(false);
+  credentialsForm: any;
+
+  constructor(
+    public nav: NavController, 
+    public forgotCtrl: AlertController, 
+    public menu: MenuController, 
+    public toastCtrl: ToastController,
+    public formBuilder: FormBuilder
+  ) {
+    this.menu.enable(false);
+
+    this.credentialsForm = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
   }
 
   // go to register page
