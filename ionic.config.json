@@ -1,5 +1,7 @@
 {
   "name": "doowit-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
