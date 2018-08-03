@@ -1,3 +1,4 @@
+import { firebaseConfig } from './../providers/config';
 import { RegisterPageModule } from './../pages/register/register.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +12,10 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,8 @@ import { RestProvider } from '../providers/rest/rest';
       pageTransition: 'ios-transition'
     }),
     LoginPageModule,
-    RegisterPageModule
+    RegisterPageModule,
+    AngularFireModule.initializeApp(firebaseConfig.fire)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +50,8 @@ import { RestProvider } from '../providers/rest/rest';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    AngularFireAuth
   ]
 })
 export class AppModule {}
