@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { FormBuilder } from '@angular/forms';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
@@ -20,7 +21,7 @@ export class RegisterPage {
 
   credentialsForm: any;
 
-  constructor(public nav: NavController, public formBuilder: FormBuilder) {
+  constructor(public nav: NavController, public formBuilder: FormBuilder, public auth: AuthProvider) {
     this.credentialsForm = this.formBuilder.group({
       name: [''],
       email: [''],
@@ -31,7 +32,18 @@ export class RegisterPage {
 
   // register and go to home page
   register() {
-    this.nav.setRoot(HomePage);
+    let data = this.credentialsForm.value;
+		let credentials = {
+			email: data.email,
+			password: data.password
+		};
+		this.auth.signUp(credentials).then(
+			() => this.nav.setRoot(HomePage),
+			(error) => {
+        console.log(error.message);
+        
+      }
+		);
   }
 
   // go to login page

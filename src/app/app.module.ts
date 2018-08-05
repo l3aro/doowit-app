@@ -15,7 +15,8 @@ import { RestProvider } from '../providers/rest/rest';
 
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     }),
     LoginPageModule,
     RegisterPageModule,
-    AngularFireModule.initializeApp(firebaseConfig.fire)
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +53,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    AuthProvider
   ]
 })
 export class AppModule {}

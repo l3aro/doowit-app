@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { HomePage } from './../home/home';
 import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
@@ -22,10 +23,11 @@ export class LoginPage {
 
   constructor(
     public nav: NavController, 
-    public forgotCtrl: AlertController, 
+    public alertCtrl: AlertController, 
     public menu: MenuController, 
     public toastCtrl: ToastController,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public auth: AuthProvider
   ) {
     this.menu.enable(false);
 
@@ -42,11 +44,33 @@ export class LoginPage {
 
   // login and go to home page
   login() {
-    this.nav.setRoot(HomePage);
+    let data = this.credentialsForm.value;
+
+    if (!data.email) {
+      return;
+    }
+
+    let credentials = {
+      email: data.email,
+      password: data.password
+    }
+
+    this.auth.signInWithEmail(credentials)
+    .then(
+      () => this.nav.setRoot(HomePage),
+      (error) => {
+        let alert = this.alertCtrl.create({
+          title: 'Lỗi',
+          message: error.message,
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    );
   }
 
   forgotPass() {
-    let forgot = this.forgotCtrl.create({
+    let forgot = this.alertCtrl.create({
       title: 'Quên mật khẩu?',
       message: "Điền email để của bạn",
       inputs: [
