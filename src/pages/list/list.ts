@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
+@IonicPage({
+  segment: 'list'
+})
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'

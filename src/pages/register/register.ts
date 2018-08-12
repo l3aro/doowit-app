@@ -1,9 +1,7 @@
 import { AuthProvider } from './../../providers/auth/auth';
 import { FormBuilder } from '@angular/forms';
-import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the RegisterPage page.
@@ -12,7 +10,9 @@ import { LoginPage } from '../login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'register'
+})
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -38,7 +38,7 @@ export class RegisterPage {
 			password: data.password
 		};
 		this.auth.signUp(credentials).then(
-			() => this.nav.setRoot(HomePage),
+			() => this.nav.setRoot('HomePage'),
 			(error) => {
         console.log(error.message);
         
@@ -48,7 +48,7 @@ export class RegisterPage {
 
   // go to login page
   login() {
-    this.nav.setRoot(LoginPage);
+    this.nav.setRoot('LoginPage');
   }
 
 }

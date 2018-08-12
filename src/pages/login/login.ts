@@ -1,6 +1,4 @@
 import { AuthProvider } from './../../providers/auth/auth';
-import { HomePage } from './../home/home';
-import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, MenuController, ToastController, AlertController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
@@ -12,7 +10,9 @@ import { FormBuilder } from '@angular/forms';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -39,7 +39,7 @@ export class LoginPage {
 
   // go to register page
   register() {
-    this.nav.setRoot(RegisterPage);
+    this.nav.setRoot('RegisterPage');
   }
 
   // login and go to home page
@@ -57,7 +57,7 @@ export class LoginPage {
 
     this.auth.signInWithEmail(credentials)
     .then(
-      () => this.nav.setRoot(HomePage),
+      () => this.nav.setRoot('HomePage'),
       (error) => {
         let alert = this.alertCtrl.create({
           title: 'Lỗi',
